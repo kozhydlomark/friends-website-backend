@@ -8,8 +8,7 @@ const friendsRoutes = require('./routes/friends');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:5173/',
-    credentials: true
+    origin: '*',  // Дозволити всім доменам
 }));
 
 app.use(express.json());
