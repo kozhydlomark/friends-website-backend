@@ -9,11 +9,12 @@ const friendsRoutes = require('./routes/friends');
 const app = express();
 // Налаштування CORS для дозволу запитів з localhost:5173
 app.use(cors({
-    origin: 'https://friends-website-dusky.vercel.app', // Дозволити цей конкретний домен
+    origin: 'https://friends-website-dusky.vercel.app', // Дозволити цей домен
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'], // Додайте x-auth-token тут
     credentials: true,
 }));
+
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
