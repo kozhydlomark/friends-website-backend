@@ -9,8 +9,10 @@ const friendsRoutes = require('./routes/friends');
 const app = express();
 // Налаштування CORS для дозволу запитів з localhost:5173
 app.use(cors({
-    origin: 'https://friends-website-dusky.vercel.app/',  // Дозволити лише вашому клієнту
-    credentials: true,  // Дозволити передачу cookie з обох сторін
+    origin: 'https://friends-website-dusky.vercel.app', // Дозволити цей конкретний домен
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
 }));
 app.use(express.json());
 
