@@ -13,12 +13,13 @@ app.use(cors({
 
 app.use(express.json());
 
-// mongoose.connect(process.env.MONGO_URI, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// });
-
+// Підключення до MongoDB
 mongoose.connect(process.env.MONGO_URI);
+
+// Тестовий маршрут для перевірки статусу сервера
+app.get('/test', (req, res) => {
+    res.json({ status: 'Server is running', uptime: process.uptime() });
+});
 
 app.use('/auth', authRoutes);
 app.use('/friends', friendsRoutes);
