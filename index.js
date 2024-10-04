@@ -7,14 +7,16 @@ const authRoutes = require('./routes/auth');
 const friendsRoutes = require('./routes/friends');
 
 const app = express();
+// Налаштування CORS для дозволу запитів з localhost:5173
 app.use(cors({
-    origin: '*',  // Дозволити всім доменам
+    origin: 'http://localhost:5173',  // Дозволити лише вашому клієнту
+    credentials: true,  // Дозволити передачу cookie з обох сторін
 }));
-
 app.use(express.json());
 
-// Підключення до MongoDB
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 // Тестовий маршрут для перевірки статусу сервера
 app.get('/test', (req, res) => {
